@@ -1,8 +1,8 @@
 # To change the effect of the smoothing change the image and filter values
 
 net:
-    model_file: 'models/opencv_face_detector_uint8.pb'
-    cfg_file: 'models/opencv_face_detector.pbtxt'
+    model_file: '/app/src/data_postprocessing/face_smoothing/models/opencv_face_detector_uint8.pb'
+    cfg_file: '/app/src/data_postprocessing/face_smoothing/models/opencv_face_detector.pbtxt'
     
     conf_threshold: 0.6
 
@@ -16,7 +16,7 @@ image:
     size: !!python/tuple [200, 200]
 
     # Output image filenames
-    output: 'output_'
+    output: 'human2'
     output_steps: 'combined_'
 
     bbox_color: !!python/tuple [255, 204, 102]

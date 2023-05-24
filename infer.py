@@ -16,8 +16,7 @@ from utils.image import (load_image,
                          get_height_and_width,
                          process_image,
                          check_if_adding_bboxes)
-from utils.video import (split_video,
-                         process_video)
+from utils.video import (split_video, process_video)
 from utils.types import (is_image,
                          is_video,
                          is_directory)
@@ -66,13 +65,15 @@ def load_configs():
     configs : dict
         A dictionary containing the configs
     """
-    with open('/content/drive/My Drive/Colab Notebooks/face-smoothing'\
-               '/configs/configs.yaml', 'r') as file:
+    root_path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
+    print("INFER_PTH>>>",root_path)
+    with open(os.path.join(root_path,"configs","configs.yaml"), 'r') as file:
         return yaml.load(file, Loader=yaml.FullLoader)
 
 
 def main(args):
     """Puts it all together."""
+    root_path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
     # Start measuring time
     tic = time.perf_counter()
     # Load project configurations
@@ -92,14 +93,16 @@ def main(args):
         # If file is a compatible image file
         elif is_image(input_file):
             # Load image
+            print("IMAGE LOAD")
             input_img = load_image(input_file)
             # Process image
             img_steps = process_image(input_img, cfg, net)
             # Save final image to specified output filename
-            out_filename = os.path.join(args.output, cfg['image']['output'])
+            out_filename = os.path.join(root_path,args.output, cfg['image']['output'])
             # Check for --show-detections flag
             output_img = check_if_adding_bboxes(args, img_steps)
             # Save image
+            print("SAVED at>>",out_filename)
             img_saved = save_image(out_filename, output_img)
 
         # If input_file is a dir

@@ -52,12 +52,12 @@ def check_img_size(img):
     to help the detector find faces.
     """
     # Retrieve image size
-    height, width = img.shape[:2]
+    #height, width = img.shape[:2]
     # If image h is > 720 or w is > 1080, resize
-    if height > 720 or width > 1080:
-        img = resize_image(img, 
-                           width=720 if width > 720 else None, 
-                           height=1080 if height > 1080 else None)
+    # if height > 720 or width > 1080:
+    #     img = resize_image(img, 
+    #                        width=720 if width > 720 else None, 
+    #                        height=1080 if height > 1080 else None)
     return img
 
 
@@ -129,12 +129,12 @@ def create_img_output_path(filename):
     """
     counter = 0
     # Add brackets and extension to filename
-    filename = filename + '{}.jpg'
+    filename = filename + '.png'
     # If a file of this name exists increase the counter by 1
-    while os.path.isfile(filename.format(counter)):
-        counter += 1
-    # Apply counter to filename
-    filename = filename.format(counter)
+    # while os.path.isfile(filename.format(counter)):
+    #     counter += 1
+    # # Apply counter to filename
+    # filename = filename.format(counter)
     return filename.format(counter)
 
 
